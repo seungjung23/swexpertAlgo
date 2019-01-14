@@ -37,7 +37,7 @@ int main()
 					tmp = 1;
 					for (j = 0; j <= ans; j++)
 					{
-						if (num[j] == 5)//k이면 c로 바꾸고 다음 단어로 ㄱ
+						if (num[j] == 5)//k이면 c로 바꾸고 다음 단어로 
 						{
 							num[j] = 1; break;
 						}
@@ -52,7 +52,7 @@ int main()
 					tmp = 2;
 					for (j = 0; j <= ans; j++)
 					{
-						if (num[j] == 1)//c이면 r로 바꾸고 다음 단어로 ㄱ
+						if (num[j] == 1)//c이면 r로 바꾸고 다음 단어로 
 						{
 							num[j] = 2; break;
 						}
@@ -66,12 +66,12 @@ int main()
 					tmp = 3;
 					for (j = 0; j <= ans; j++)
 					{
-						if (num[j] == 2)//r이면 o로 바꾸고 다음 단어로 ㄱ
+						if (num[j] == 2)//r이면 o로 바꾸고 다음 단어로 
 						{
 							num[j] = 3; break;
 						}
 					}
-					if (j == ans + 1)  //???
+					if (j == ans + 1)  
 					{
 						ans = -1; break;
 					}
@@ -80,12 +80,12 @@ int main()
 					tmp = 4;
 					for (j = 0; j <= ans; j++)
 					{
-						if (num[j] == 3)//o이면 a로 바꾸고 다음 단어로 ㄱ
+						if (num[j] == 3)//o이면 a로 바꾸고 다음 단어로 
 						{
 							num[j] = 4; break;
 						}
 					}
-					if (j == ans + 1)  //???
+					if (j == ans + 1)  
 					{
 						ans = -1; break;
 					}
@@ -94,12 +94,12 @@ int main()
 					tmp = 5;
 					for (j = 0; j <= ans; j++)
 					{
-						if (num[j] == 4)//a이면 k로 바꾸고 다음 단어로 ㄱ
+						if (num[j] == 4)//a이면 k로 바꾸고 다음 단어로 
 						{
 							num[j] = 5; break;
 						}
 					}
-					if (j == ans + 1)  //???
+					if (j == ans + 1)  
 					{
 						ans = -1; break;
 					}
