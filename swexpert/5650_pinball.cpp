@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#define MAX 102
 
-
-int map[102][102];
+int map[MAX][MAX];
 int n;
 int max;
-int dir[4][2] = { {0,-1},{0,1},{-1,0},{1,0} };
-				// 0상	  1하	 2좌   3우
+int dir[4][2] = { {-1,0},{1,0},{0,-1},{0,1} };
+// 0상	  1하	 2좌   3우
+
 
 int block[6][4] = {
 	{ 0,0,0,0 },
@@ -18,15 +19,19 @@ int block[6][4] = {
 };
 
 
-void findhole(int *x, int *y, int num)
+void find(int cx, int cy, int *nx, int *ny)
 {
 	for (int i = 1; i <= n; i++)
 		for (int j = 1; j <= n; j++)
-			if (map[i][j] == num && (*x != j) && (*y != i))
+		{
+			if ((map[cx][cy] == map[i][j]) && ((cx != i) || (cy != j)))
 			{
-				*x = j, *y = i; return;
+				*nx = i;
+				*ny = j;
 			}
+		}
 }
+
 
 void score(int x, int y, int d)
 {
@@ -37,25 +42,25 @@ void score(int x, int y, int d)
 	{
 		nx += dir[d][0];
 		ny += dir[d][1];
-		
-		if ((nx == x && ny == y) || map[ny][nx] == -1)
+
+		if ((nx == x && ny == y) || map[nx][ny] == -1)
 		{
 			max = (max < sc) ? sc : max;
 			break;
 		}
-	
-		if (map[ny][nx] == 0) //장애물 없으면 다음 칸으로
+
+		if (map[nx][ny] == 0) //장애물 없으면 다음 칸으로
 			continue;
 
-		else if (map[ny][nx] >= 1 && map[ny][nx] <= 5)
+		if (map[nx][ny] >= 1 && map[nx][ny] <= 5)
 		{
-			d = block[map[ny][nx]][d];
-			sc++;			
+			d = block[map[nx][ny]][d];
+			sc++;
 		}
 
-		else if (map[ny][nx] >= 6 && map[ny][nx] <= 10)
+		else if (map[nx][ny] >= 6 && map[nx][ny] <= 10)
 		{
-			findhole(&nx, &ny, map[ny][nx]);
+			find(nx, ny, &nx, &ny);
 		}
 	}
 	return;
@@ -84,17 +89,15 @@ int main()
 		scanf("%d", &n);
 		max = 0;
 
-		memset(map, 0, sizeof(map));
-
 		setting();
 
 		for (int i = 1; i <= n; i++)
 			for (int j = 1; j <= n; j++)
-			{	
 				if (map[i][j] == 0)
+				{
 					for (int k = 0; k < 4; k++)
 						score(i, j, k);
-			}
+				}
 
 		printf("#%d %d\n", tc, max);
 	}
