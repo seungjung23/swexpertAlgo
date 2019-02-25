@@ -9,7 +9,7 @@ void cnt(vector<int> &w, int num, int curword)
 {
 	if (num == N)
 	{
-		if (curword == 0 && num == N)
+		if (curword == 0)
 		{
 			ret++;
 		}
